@@ -25,6 +25,7 @@ class EasyForm {
         '{{label}}' => '',
         '{{error-first}}' => '',
         '{{error-has}}' => '',
+        '{{help-block}}' => '',
     );
 
     public function __construct($config) {
@@ -130,6 +131,11 @@ class EasyForm {
     public function error($errors, $message = '<span class="error">:message</span>') {
         $this->tags['{{error-first}}'] = $errors->first($this->tags['{{tag_name}}'], $message);
         $this->tags['{{error-has}}'] = $errors->has($this->tags['{{tag_name}}']) ? 'has-error' : '';
+        return $this;
+    }
+
+    public function helpBlock($message = '') {
+        $this->tags['{{help-block}}'] = '<span class="help-block">' . $message . '</span>';
         return $this;
     }
 
