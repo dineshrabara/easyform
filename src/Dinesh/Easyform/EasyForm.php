@@ -1,0 +1,51 @@
+<?php
+
+namespace Dinesh\Easyform;
+
+use Illuminate\Support\Facades\Form;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of easyform
+ *
+ * @author Dinesh Rabara <dinesh.rabara@gmail.com>
+ */
+class EasyForm {
+
+    private $template;
+    private $config;
+    private $tags = array(
+        'tag' => '',
+        'tag_name' => '',
+        'label' => '',
+    );
+
+    public function __construct($config) {       
+        $this->config = $config;
+        $this->template = $config['templates']['default'];
+    }
+    public function setTemplate($name) {
+        $this->template = $this->config['templates'][$name];
+        return $this;
+    }
+    public function text($name, $value = null, $options = array()) {
+        $this->tags['tag_name'] = $name;
+        $this->tags['tag'] = Form::text($name, $value, $options);
+        return $this;
+    }
+
+    public function label($name, $value = null, $options = array()) {
+        $this->tags['label'] = Form::label($name, $value, $options);
+        return $this;
+    }
+
+    public function __toString() {
+        return str_replace(array('{{tag}}', '{{tag_name}}', '{{label}}'), $this->tags, $this->template);
+    }
+
+}
