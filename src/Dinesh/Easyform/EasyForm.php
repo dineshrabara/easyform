@@ -20,32 +20,42 @@ class EasyForm {
     private $template;
     private $config;
     private $tags = array(
-        'tag' => '',
-        'tag_name' => '',
-        'label' => '',
+        '{{tag}}' => '',
+        '{{tag_name}}' => '',
+        '{{label}}' => '',
+        '{{error-first}}' => '',
+        '{{error-has}}' => '',
     );
 
-    public function __construct($config) {       
+    public function __construct($config) {
         $this->config = $config;
         $this->template = $config['templates']['default'];
     }
+
     public function setTemplate($name) {
         $this->template = $this->config['templates'][$name];
         return $this;
     }
+
     public function text($name, $value = null, $options = array()) {
-        $this->tags['tag_name'] = $name;
-        $this->tags['tag'] = Form::text($name, $value, $options);
+        $this->tags['{{tag_name}}'] = $name;
+        $this->tags['{{tag}}'] = Form::text($name, $value, $options);
         return $this;
     }
 
-    public function label($name, $value = null, $options = array()) {
-        $this->tags['label'] = Form::label($name, $value, $options);
+    public function error($errors, $message = '<span class="error">:message</span>') {
+        $this->tags['{{error-first}}'] = $errors->first($this->tags['{{tag_name}}'], $message);
+        $this->tags['{{error-has}}'] = $errors->has($this->tags['{{tag_name}}']) ? 'has-error' : '';
+        return $this;
+    }
+
+    public function label($value = null, $options = array()) {
+        $this->tags['{{label}}'] = Form::label($this->tags['{{tag_name}}'], $value, $options);
         return $this;
     }
 
     public function __toString() {
-        return str_replace(array('{{tag}}', '{{tag_name}}', '{{label}}'), $this->tags, $this->template);
+        return str_replace(array_keys($this->tags), $this->tags, $this->template);
     }
 
 }

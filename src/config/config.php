@@ -2,16 +2,17 @@
 
 return array(
     'templates' => array(
-        'default' => '<div class="form-group">
+        'default' => '<div class="form-group {{error-has}}">
                     {{label}}
                     <div class="controls col-sm-5">
-                        {{tag}}                        
+                        {{tag}}
+                        {{error-first}}
                     </div>
                 </div>',
         'default2' => '<div class="form-group">
                     {{label}}00000000
                     <div class="controls col-sm-5">
-                        {{tag}}                        
+                        {{tag}}
                     </div>
                 </div>',
     ),
