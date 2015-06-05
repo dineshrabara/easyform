@@ -1,6 +1,6 @@
 {
     "name": "dinesh/easyform",
-    "description": "Laravel form builder ",
+    "description": "Laravel form builder,Easy way to make Forms with laravel ",
     "keywords": ["laravel", "form", "easy", "form builder"],
     "license": "MIT",
     "authors": [
