@@ -15,5 +15,11 @@ return array(
                         {{tag}}
                     </div>
                 </div>',
+        'search' => "<li>
+                    <div class='form-group fix-width' >
+                        {{label}}
+                        {{tag}}
+                    </div>
+                </li>",
     ),
 );
