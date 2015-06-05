@@ -31,6 +31,7 @@ class EasyForm {
     public function __construct($config) {
         $this->config = $config;
         $this->template = $config['templates']['default'];
+        $this->tags = array_merge($this->tags, $config['tags']);
     }
 
     public function setTemplate($name) {
@@ -136,6 +137,13 @@ class EasyForm {
 
     public function helpBlock($message = '') {
         $this->tags['{{help-block}}'] = '<span class="help-block">' . $message . '</span>';
+        return $this;
+    }
+
+    public function tags($name = '', $value = null) {
+        if (!empty($value)) {
+            $this->tags['{{'.$name.'}}'] = $value;
+        }
         return $this;
     }
 

@@ -10,7 +10,8 @@ return array(
                     </div>
                 </div>',
         'default2' => '<div class="form-group">
-                    {{label}}00000000
+                    {{label}}
+                    {{test}}
                     <div class="controls col-sm-5">
                         {{tag}}
                     </div>
@@ -21,5 +22,6 @@ return array(
                         {{tag}}
                     </div>
                 </li>",
+        'tags' => array('{{test}}' => 'default_value'),
     ),
 );
