@@ -28,5 +28,5 @@ example
 
 ```php
 
-{{EasyForm::text('first_name',null,array('class'=> ($errors->has('first_name'))?'error':'','class'=> 'form-control'))
+{{EasyForm::text('first_name',null,array('class'=> 'form-control'))
                             ->label('First Name:',array('class'=>'col-sm-2 control-label'))->error($errors)}}
