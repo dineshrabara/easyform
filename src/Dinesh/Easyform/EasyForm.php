@@ -40,6 +40,7 @@ class EasyForm {
     }
 
     public function text($name, $value = null, $options = array()) {
+        $options['id'] = !isset($options['id']) ? $name : $options['id'];
         $this->tags['{{tag_name}}'] = $name;
         $this->tags['{{tag}}'] = Form::text($name, $value, $options);
         return $this;
@@ -135,14 +136,14 @@ class EasyForm {
         return $this;
     }
 
-    public function helpBlock($message = '') {
-        $this->tags['{{help-block}}'] = '<span class="help-block">' . $message . '</span>';
+    public function helpBlock($message = '', $template = '<span class="help-block">:message</span>') {
+        $this->tags['{{help-block}}'] = str_replace(':message', $message, $template);
         return $this;
     }
 
     public function tags($name = '', $value = null) {
         if (!empty($value)) {
-            $this->tags['{{'.$name.'}}'] = $value;
+            $this->tags['{{' . $name . '}}'] = $value;
         }
         return $this;
     }
