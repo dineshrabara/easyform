@@ -132,7 +132,7 @@ class EasyForm {
 
     public function error($errors, $message = '<span class="error">:message</span>') {
         $this->tags['{{error-first}}'] = $errors->first(str_replace('[]', '', $this->tags['{{tag_name}}']), $message);
-        $this->tags['{{error-has}}'] = $errors->has($this->tags['{{tag_name}}']) ? 'has-error' : '';
+        $this->tags['{{error-has}}'] = $errors->has(str_replace('[]', '', $this->tags['{{tag_name}}'])) ? 'has-error' : '';
         return $this;
     }
 
