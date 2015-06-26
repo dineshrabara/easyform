@@ -166,7 +166,11 @@ class EasyForm {
     }
 
     public function __toString() {
-        return str_replace(array_keys($this->tags), $this->tags, $this->template);
+        $string = str_replace(array_keys($this->tags), $this->tags, $this->template);
+        $this->tags = array_map(function() {
+            return null;
+        }, $this->tags);
+        return $string;
     }
 
 }
