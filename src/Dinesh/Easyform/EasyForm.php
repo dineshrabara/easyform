@@ -3,7 +3,7 @@
 namespace Dinesh\Easyform;
 
 use Illuminate\Support\Facades\Form;
-
+use Illuminate\Support\Facades\HTML;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -161,7 +161,7 @@ class EasyForm {
     }
 
     public function label($value = null, $options = array()) {
-        $this->tags['{{label}}'] = Form::label($this->tags['{{tag_name}}'], $value, $options);
+        $this->tags['{{label}}'] = HTML::decode(Form::label($this->tags['{{tag_name}}'], $value, $options));
         return $this;
     }
 
